@@ -1,3 +1,3 @@
-# Notes
+# Notes and Training
 
-Things I find hard to keep in my head
+Useful information or training
