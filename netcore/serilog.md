@@ -1,10 +1,10 @@
-# Installing Serilog
+# Serilog
 
 ## Console Application
 
 ### Core NuGet package
 
-```
+``` cmd
 Serilog
 Serilog.Extensions.Hosting
 Serilog.Settings.Configuration
@@ -12,14 +12,20 @@ Serilog.Settings.Configuration
 
 #### Logging to console
 
-```text
+``` cmd
 Serilog.Sinks.Console
 ```
 
 #### Logging to Rolling File
 
-```txt
+``` cmd
 Serilog.Sinks.RollingFile
+```
+
+#### Logging to Windows event log
+
+``` cmd
+Serilog.Sinks.EventLog
 ```
 
 ## Basic Setup
@@ -49,7 +55,7 @@ Host
 });
 ```
 
-## appsettings.json
+## Load configuration from appsettings.json
 
 ```c#
 Host
@@ -78,6 +84,9 @@ Host
 ```
 
 ### Configuration Containing WriteTo values
+
+We still need to install the correct packages to allow the logs to be written to.
+
 ```json
 {
   "Serilog": {

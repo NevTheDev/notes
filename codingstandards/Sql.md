@@ -27,10 +27,19 @@ INNER JOIN [schema].[table2] t2
 ON t1.id = t2.id
 WHERE t1.[id] = 1
 
--- Best - indenting the on allows the reader to clearly identify the join condition.
+-- Best - indenting the on allows the reader to clearly identify the join conditions.
 SELECT  *
 FROM [schema].[table] t1
 INNER JOIN [schema].[table2] t2
     ON t1.id = t2.id
 WHERE t1.[id] = 1
+
+
+SELECT  *
+FROM [schema].[table] t1
+INNER JOIN [schema].[table2] t2
+    ON t1.id = t2.id
+        AND t1.field2 = t2.field2
+WHERE t1.[id] = 1
+
 ```
