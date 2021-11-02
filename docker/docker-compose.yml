@@ -1,0 +1,28 @@
+version: "3.9"
+services: 
+  elasticsearch:
+    image: "docker.elastic.co/elasticsearch/elasticsearch:7.10.1"
+    ports: 
+    - "9200:9200"
+    - "9300:9300"
+    environment:
+    - "discovery.type=single-node"
+  kibana:
+    image: "docker.elastic.co/kibana/kibana:7.10.1"
+    ports:
+    - "5601:5601"
+    environment: 
+    - "ELASTICSEARCH_HOSTS=http://elasticsearch:9200"
+  redis:
+    image: "redis"
+    ports: 
+    - "6379:6379"
+  # sql:
+  #   image: "mcr.microsoft.com/mssql/server:2019-latest"
+  #   ports: 
+  #   - "1433:1433"
+  #   environment:
+  #   - "ACCEPT_EULA=Y"
+  #   - "SA_PASSWORD=yourStrong(!)Password"
+  #   - "MSSQL_PID=Developer"
+
