@@ -1,10 +1,14 @@
-Moq
-Bogus
-XUnit
-
 # Unit Testing
 
-We don't mock the HttpClient, but we do mock the message handler that the HttpClient uses.
+## Useful Packages
+
+- Moq
+- Bogus
+- XUnit
+
+## Mocking HttpClient
+
+We don't mock the HttpClient, but we do mock the HttpMessageHandler that the HttpClient uses.
 
 ``` c#
 var handler = new Mock<HttpMessageHandler>();
@@ -17,7 +21,15 @@ var handler = new Mock<HttpMessageHandler>();
         .Returns(Task<HttpResponseMessage>.Factory.StartNew(returns)).Callback(cbAction);
 ```
 
-## Mocking HttpClient
+## Expose Internals to Test Projects
+
+```xml
+<ItemGroup>
+  <AssemblyAttribute Include="System.Runtime.CompilerServices.InternalsVisibleTo">
+    <_Parameter1>$(AssemblyName).Tests</_Parameter1>
+  </AssemblyAttribute>
+</ItemGroup>
+```
 
 ## Code Coverage
 
