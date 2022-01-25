@@ -1,7 +1,5 @@
 # docker
 
-
-
 ### Getting images
 
 ``` cmd
@@ -11,7 +9,6 @@ docker pull mcr.microsoft.com/dotnet/runtime:5.0
 ``` cmd
 docker run 
 ```
-
 
 ``` cmd
 docker run -d -p 80:80 my_image nginx -g 'daemon off;'
@@ -40,9 +37,3 @@ docker build -t my-app -f Dockerfile .
 
 docker build -t my-app:feature-499 -f Dockerfile .
 ```
-
-
-## Create a container
-
-``` 
-docker create --name my-app 

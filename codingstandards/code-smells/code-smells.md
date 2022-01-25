@@ -36,6 +36,50 @@ It also does not enfource the odering of items in the class so a developer could
 
 Think about the role of the class, if something does not fit into this class move it to its own class that does that task.
 
+
+## Defining variables far from where they are used
+
+``` c#
+var results = new List<string>();
+if (otherValues is null)
+{
+    return results;
+}
+
+foreach (var thing in otherValues)
+{
+    results.Add(thing.Name);
+}
+```
+
+The first "if" does not evaluate anything about the results, we are mearly creating an empty array so we can return. 
+
+to improve the readablity we could do this:
+
+```c#
+if (otherValues is null)
+{
+    return Enumerable.Empty<string>();
+}
+
+var results = new List<string>();
+foreach (var thing in otherValues)
+{
+    results.Add(thing.Name);
+}
+
+// Or
+
+if (otherValues is null)
+{
+    return Enumerable.Empty<string>();
+}
+
+var results = otherValues
+    .Select(c => c.Name);
+```
+
+
 ## Helper Classes
 
 A helper class is a code smell as it has no defined purpose.
@@ -112,22 +156,12 @@ else
 ```
 
 ``` c#
-var outcomeText = GetOutcomeText(success);
-...
-
-private string GetOutcomeText(bool success)
-{
-    if (success)
-    {
-        return "That all worked fine."
-    }
-
-    return  "Oh dear, that didn't work at all."
-}
-
+string outcomeText = success ?
+    "That all worked fine." :
+    "Oh dear, that didn't work at all.";
 ```
 
-## Levels of Indentation
+## Levels of Indentation/Nesting
 
 ```c#
 public void DoTheLooping(bool success)
@@ -150,6 +184,7 @@ public void DoTheLooping(bool success)
     }
 }
 ```
+### Use methods to break the nesting down
 
 ```c#
 public void DoTheLooping(bool success)
