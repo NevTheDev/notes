@@ -6,20 +6,7 @@
 - Bogus
 - XUnit
 
-## Mocking HttpClient
 
-We don't mock the HttpClient, but we do mock the HttpMessageHandler that the HttpClient uses.
-
-``` c#
-var handler = new Mock<HttpMessageHandler>();
-    handler
-        .Protected()
-        .Setup<Task<HttpResponseMessage>>(
-            "SendAsync",
-            ItExpr.IsAny<HttpRequestMessage>(),
-            ItExpr.IsAny<CancellationToken>())
-        .Returns(Task<HttpResponseMessage>.Factory.StartNew(returns)).Callback(cbAction);
-```
 
 ## Expose Internals to Test Projects
 
